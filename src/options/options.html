@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HackPush Configuration</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>HackPush Configuration</h1>
+    </header>
+
+    <section class="config-section">
+      <h2>GitHub Settings</h2>
+      <form id="config-form">
+        <div class="form-group">
+          <label for="token">
+            Personal Access Token
+            <small>
+              Generate at 
+              <a href="https://github.com/settings/tokens" target="_blank">
+                github.com/settings/tokens
+              </a>
+              with 'repo' scope
+            </small>
+          </label>
+          <input type="password" id="token" placeholder="ghp_xxxxxxxxxxxx" required>
+          <button type="button" id="toggle-token" class="btn-toggle">Show</button>
+        </div>
+
+        <div class="form-group">
+          <label for="repo">
+            Repository (owner/repo)
+          </label>
+          <input type="text" id="repo" placeholder="username/hackerrank-solutions" required>
+        </div>
+
+        <div class="form-group">
+          <label for="branch">
+            Branch
+          </label>
+          <input type="text" id="branch" value="main" placeholder="main">
+        </div>
+
+        <div class="form-group">
+          <label for="structure">
+            File Structure
+            <small>Variables: {category}, {filename}, {slug}, {language}</small>
+          </label>
+          <input type="text" id="structure" value="hackerrank/{category}/{filename}" placeholder="hackerrank/{category}/{filename}">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save Configuration</button>
+          <button type="button" id="test-connection" class="btn btn-secondary">Test Connection</button>
+        </div>
+
+        <div id="test-result" class="test-result hidden"></div>
+      </form>
+    </section>
+
+    <section class="history-section">
+      <h2>Submission History</h2>
+      <div id="history-container">
+        <p class="empty-state">No submissions yet</p>
+      </div>
+      <div class="history-actions">
+        <button id="clear-history" class="btn btn-danger">Clear History</button>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="options.js"></script>
+</body>
+</html>
+

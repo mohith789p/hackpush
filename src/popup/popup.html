@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HackPush</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>HackPush</h1>
+    </header>
+
+    <div id="connected-view" class="view hidden">
+      <div class="status-section">
+        <p>✅ Connected to <strong id="repo-name">-</strong></p>
+        <p>Synced: <strong id="submission-count">0</strong> submissions</p>
+      </div>
+      <div class="actions">
+        <button id="view-history" class="btn btn-secondary">View History</button>
+        <button id="disconnect" class="btn btn-danger">Disconnect</button>
+      </div>
+    </div>
+
+    <div id="not-connected-view" class="view">
+      <div class="status-section">
+        <p>Connect HackPush to your GitHub repository</p>
+      </div>
+      <div class="actions">
+        <button id="setup" class="btn btn-primary">Get Started</button>
+      </div>
+    </div>
+
+    <div id="error-view" class="view hidden">
+      <div class="error-message">
+        <p id="error-text"></p>
+      </div>
+      <div class="actions">
+        <button id="retry-connection" class="btn btn-primary">Retry</button>
+        <button id="open-settings" class="btn btn-secondary">Open Settings</button>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,24 @@
+{
+  "name": "hackpush",
+  "version": "1.0.0",
+  "description": "Automatically sync accepted HackerRank solutions to GitHub",
+  "scripts": {
+    "build": "echo 'No build step required for Manifest V3'",
+    "test": "echo 'Tests coming soon'",
+    "package": "zip -r hackpush.zip . -x '*.git*' '*.pdf' 'extract_pdf.py' 'pdf_content.txt' '*.zip'"
+  },
+  "keywords": [
+    "hackerrank",
+    "github",
+    "chrome-extension",
+    "browser-extension",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
+

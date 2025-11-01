@@ -1,0 +1,43 @@
+{
+    "manifest_version": 3,
+    "name": "HackPush",
+    "version": "1.0.0",
+    "description": "Automatically sync accepted HackerRank solutions to GitHub",
+    "permissions": [
+      "storage",
+      "identity",
+      "scripting",
+      "activeTab",
+      "notifications"
+    ],
+    "host_permissions": [
+      "https://www.hackerrank.com/*",
+      "https://api.github.com/*"
+    ],
+    "background": {
+      "service_worker": "src/js/background.js",
+      "type": "module"
+    },
+     "content_scripts": [
+       {
+         "matches": ["https://www.hackerrank.com/challenges/*/problem*"],
+         "js": ["src/js/content.js"],
+         "run_at": "document_idle"
+       }
+     ],
+    "action": {
+      "default_popup": "src/popup/popup.html",
+      "default_icon": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+      }
+    },
+    "options_page": "src/options/options.html",
+    "icons": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+}
+  
