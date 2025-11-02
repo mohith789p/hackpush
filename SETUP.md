@@ -27,6 +27,7 @@
    - Go to any HackerRank problem page
    - Write and submit your solution
    - If accepted, it automatically syncs to GitHub!
+   - Extension uses HackerRank's API for reliable extraction
 
 ## Testing
 
@@ -41,6 +42,8 @@
 - **Check console**: Open DevTools (F12) on HackerRank page, look for `[HackPush]` logs
 - **Check service worker**: Go to `chrome://extensions/` → Find HackPush → Click "service worker"
 - **Verify permissions**: Make sure extension has access to HackerRank and GitHub
+- **API errors**: Check if you're logged into HackerRank and have submitted solutions
+- **Network issues**: Ensure stable internet connection for API calls
 
 ## Development
 

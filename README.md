@@ -2,16 +2,17 @@
 
 **Automatically Sync Accepted HackerRank Solutions to GitHub**
 
-HackPush is a Chrome/Firefox browser extension that automatically synchronizes your accepted HackerRank coding solutions to a GitHub repository. Inspired by LeetHub, HackPush is specifically designed for HackerRank's DOM structure and uses Manifest V3 standards.
+HackPush is a Chrome/Firefox browser extension that automatically synchronizes your accepted HackerRank coding solutions to a GitHub repository. Inspired by LeetHub, HackPush uses HackerRank's REST API for reliable data extraction and follows Manifest V3 standards.
 
 ## Features
 
 - ✅ **Automatic Sync**: Detects accepted submissions and pushes to GitHub automatically
-- 🎯 **Smart Detection**: Monitors HackerRank pages using MutationObserver
+- 🎯 **API-Based Extraction**: Uses HackerRank's REST API for reliable code and metadata extraction
 - 📁 **Organized Structure**: Files organized by category with customizable templates
 - 🔒 **Secure**: Uses GitHub Personal Access Tokens
 - 📝 **Metadata Headers**: Adds problem info, language, and submission date to each file
 - 📊 **Submission History**: Track all your synced solutions
+- ⚡ **Fast & Efficient**: Single API call per submission for optimal performance
 
 ## Installation
 
@@ -58,12 +59,31 @@ The extension will be available on Chrome Web Store (coming soon).
 1. Solve a problem on HackerRank
 2. Submit your solution
 3. If accepted, HackPush automatically:
-   - Extracts your code
-   - Detects the language
+   - Fetches your submission via HackerRank API
+   - Extracts code, language, and metadata
    - Creates/updates the file in your GitHub repo
    - Organizes by category (algorithms, data-structures, etc.)
 
 **That's it!** No manual steps required.
+
+## How It Works
+
+HackPush uses a modern API-based approach:
+
+1. **Submit Detection**: Monitors for submit button clicks on HackerRank
+2. **API Polling**: Waits 3 seconds, then queries HackerRank's REST API
+3. **Data Extraction**: Fetches submission details in a single API call:
+   - Code content
+   - Programming language
+   - Problem title and category
+   - Submission status
+4. **GitHub Sync**: Pushes to your repository with proper formatting
+
+**Benefits of API approach:**
+- ✅ More reliable than DOM parsing
+- ✅ Works across UI updates
+- ✅ Faster (single API call)
+- ✅ Accurate metadata
 
 ## File Organization
 
@@ -120,8 +140,7 @@ hackpush/
 ├── src/
 │   ├── js/
 │   │   ├── background.js       # Service worker
-│   │   ├── content.js          # Main monitoring logic
-│   │   ├── dom-parser.js       # DOM extraction utilities
+│   │   ├── content.js          # Main monitoring logic & API extraction
 │   │   ├── github-api.js       # GitHub API wrapper
 │   │   └── storage.js          # Chrome storage manager
 │   ├── popup/
@@ -153,9 +172,11 @@ hackpush/
 
 ### Code not extracted
 
-1. HackerRank may have updated their UI
-2. Check console for extraction errors
-3. File an issue with the problem URL
+1. Check if submission was accepted (API only fetches accepted submissions)
+2. Verify you're on a `/challenges/` URL
+3. Check console for API errors
+4. Ensure you have an active internet connection
+5. File an issue with the problem URL if issue persists
 
 ## Development
 
@@ -198,11 +219,26 @@ Contributions welcome! Please:
 
 MIT License
 
+## Technical Details
+
+### API Endpoints Used
+
+HackPush interacts with HackerRank's REST API:
+
+- **Submissions List**: `/rest/contests/master/challenges/{slug}/submissions`
+- **Submission Details**: `/rest/contests/master/challenges/{slug}/submissions/{id}`
+
+### Architecture
+
+- **Content Script** (`content.js`): Monitors HackerRank pages and handles API calls
+- **Service Worker** (`background.js`): Manages GitHub API communication
+- **Storage**: Chrome's local storage for configuration
+
 ## Acknowledgments
 
 - Inspired by [LeetHub](https://github.com/QasimWani/LeetHub)
 - Built with Manifest V3
-- Uses GitHub REST API
+- Uses HackerRank REST API & GitHub REST API
 
 ## Support
 
